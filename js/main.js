@@ -52,7 +52,6 @@ function pendu() {
   var trys = 0, flag = 0;
   var mots = ["pendu", "ciseaux", "pierre", "papier"];
   var toFind = mots[Math.trunc(Math.random() * mots.length)];
-  console.log(toFind);
   var res  = "";
 
   for (var i = 0; i < toFind.length; i++) {
