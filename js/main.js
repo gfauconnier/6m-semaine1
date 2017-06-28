@@ -1,11 +1,10 @@
-
 // rock-scissors-paper game :
 
 // variables used to store scores
 var scoreJ = 0;
 var scoreO = 0;
 // this function does everything needed for this game
-function calcRes(n=0) {
+function calcRes(n = 0) {
   var x = document.getElementById("choix").selectedIndex;
   var y = document.getElementById("choix").options;
   // gets the value of the selected <option> (0, 1 or 2)
@@ -49,49 +48,67 @@ function calcRes(n=0) {
 
 // hangedman game :
 function pendu() {
-  var trys = 0, flag = 0;
+  var trys = 0,
+    flag = 0,
+    cpt = 0;
   var mots = ["pendu", "ciseaux", "pierre", "papier"];
   var toFind = mots[Math.trunc(Math.random() * mots.length)];
-  var res  = "";
+  var res = "";
+  var used = [];
 
   for (var i = 0; i < toFind.length; i++) {
     res += "_";
   }
 
-  while (trys < 10) {
+  while (trys < 10 && res != toFind) {
     // no verifications of what's prompted
     var char = prompt("Saisissez une lettre").toLowerCase();
 
     // only 1 alphabet character input
     if (char.length > 1 || !char[0].match(/[a-z]/i)) {
       console.log("Veuillez ne saisir qu'une lettre !");
-    }
-    else {
-      // compares the prompted char with the whole string
-      for (var i = 0; i < toFind.length; i++) {
-        if (char == toFind[i]) {
-          // have to split and join res or else can't modify res[i]
-          res = res.split("");
-          res[i] = toFind[i];
-          res = res.join("");
-          flag = 1;
+    } else {
+      // checks the previous inputs if unique, pushes it in used
+      if (used.length > 0) {
+        for (var i = 0; i < used.length; i++) {
+          if (char == used[i]) {
+            cpt++;
+          }
         }
       }
+      else {
+        cpt = 100;
+      }
+      // compares the prompted char with the whole string
+      if (cpt == 0 || cpt == 100) {
+        for (var i = 0; i < toFind.length; i++) {
+          if (char == toFind[i]) {
+            // have to split and join res or else can't modify res[i]
+            res = res.split("");
+            res[i] = toFind[i];
+            res = res.join("");
+            flag = 1;
+          }
+        }
+        used.push(char);
+      }
+      else  {
+        console.log("Vous avez déjà saisi ce caractère.");
+      }
+      cpt = 0;
+
     }
 
-    if (res == toFind) {
-      trys = 20;
-      break;
-    }
-    else if (flag == 0){
+    if (flag == 0) {
       trys++;
     }
 
     console.log(res + " il vous reste " + (10 - trys) + " tentatives");
+    console.log("vous avez déjà essayé : " + used);
     flag = 0;
   }
 
-  if ((trys == 20) || (trys == 10 && res == toFind)) {
+  if (res == toFind) {
     alert("Gagné ! Il vous restait : " + (10 - trys) + " essais");
   }
   else {
