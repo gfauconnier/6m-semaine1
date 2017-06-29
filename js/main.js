@@ -46,8 +46,8 @@ function calcRes(n = 0) {
 }
 
 
-// hangedman game :
-function pendu() {
+// hangman game :
+/*function pendu() {
   var trys = 0,
     flag = 0,
     cpt = 0;
@@ -81,15 +81,15 @@ function pendu() {
       }
       // compares the prompted char with the whole string
       if (cpt == 0 || cpt == 100) {
+        res = res.split("");
         for (var i = 0; i < toFind.length; i++) {
           if (char == toFind[i]) {
             // have to split and join res or else can't modify res[i]
-            res = res.split("");
             res[i] = toFind[i];
-            res = res.join("");
             flag = 1;
           }
         }
+        res = res.join("");
         used.push(char);
       }
       else  {
@@ -115,4 +115,110 @@ function pendu() {
     alert("Perdu ! Il fallait trouver : " + toFind);
   }
 
+}
+*/
+
+var used = [];
+var flag = 0;
+var pendu = ["", "\n=========\n", "\n|\n|\n|\n|\n|\n=========\n", "\n+----+\n|\n|\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|    |\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|   /\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|   / \\\n|\n=========\n"];
+
+// hangman game :
+function pendu2() {
+  var trys = 0,
+    cpt = 0;
+  var mots = ["pendu", "ciseaux", "pierre", "papier"];
+  var toFind = mots[Math.trunc(Math.random() * mots.length)];
+  var res = "";
+
+
+  res = fillRes(toFind);
+
+
+  while (trys < 10 && res != toFind) {
+    // no verifications of what's prompted
+    var char = prompt("Saisissez une lettre").toLowerCase();
+
+
+    // only 1 alphabet character input
+    if (char.length == 0 ||char.length > 1 || !char[0].match(/[a-z]/i)) {
+      console.log("Veuillez ne saisir qu'une lettre !");
+    } else {
+      // checks the previous inputs if unique, pushes it in used
+      res = checkUsed(char, res, toFind);
+      cpt = 0;
+    }
+
+    if (flag == 0) {
+      trys++;
+    }
+    console.log(pendu[trys]);
+    console.log(res + " il vous reste " + (10 - trys) + " tentatives");
+    console.log("vous avez déjà essayé : " + used);
+    flag = 0;
+  }
+
+  winOrLose(res, trys, toFind);
+  used = [];
+}
+
+
+/**
+ * fillRes - fills the to be displayed solution with "_"
+ *
+ * @param  {string} strToFind the word to find
+ * @return {string} res    return a string filled with str.length "_"
+ */
+function fillRes(strToFind){
+  var res = "";
+  for (var i = 0; i < strToFind.length; i++) {
+    res += "_";
+  }
+  return res;
+}
+
+
+function checkUsed(char, res, toFind) {
+  var cpt = 0;
+  if (used.length > 0) {
+    for (var i = 0; i < used.length; i++) {
+      if (char == used[i]) {
+        cpt++;
+      }
+    }
+  }
+  else {
+    cpt = 100;
+  }
+  // compares the prompted char with the whole string
+  if (cpt == 0 || cpt == 100) {
+    res = compare(res, char, toFind);
+  }
+  else  {
+    console.log("Vous avez déjà saisi ce caractère.");
+  }
+
+  return res;
+}
+
+function compare(res, char, toFind) {
+  res = res.split("");
+  for (var i = 0; i < toFind.length; i++) {
+    if (char == toFind[i]) {
+      // have to split and join res or else can't modify res[i]
+      res[i] = toFind[i];
+      flag = 1;
+    }
+  }
+  res = res.join("");
+  used.push(char);
+  return res;
+}
+
+function winOrLose(res, trys, toFind) {
+  if (res == toFind) {
+    alert("Gagné ! Il vous restait : " + (10 - trys) + " essais");
+  }
+  else {
+    alert("Perdu ! Il fallait trouver : " + toFind);
+  }
 }
