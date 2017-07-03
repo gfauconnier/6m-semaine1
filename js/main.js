@@ -45,14 +45,12 @@ function calcRes(n = 0) {
   }
 }
 
-
-// hangman game :
-
 var used = [];
 var flag = 0;
 var pendu = ["", "\n=========\n", "\n|\n|\n|\n|\n|\n=========\n", "\n+----+\n|\n|\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|    |\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|   /\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|   / \\\n|\n=========\n"];
 
-function pendu() {
+// hangman game :
+function penduF() {
   var trys = 0,
     cpt = 0;
   var mots = ["pendu", "ciseaux", "pierre", "papier"];
@@ -125,6 +123,7 @@ function checkUsed(char, res, toFind) {
   else  {
     console.log("Vous avez déjà saisi ce caractère.");
   }
+
   return res;
 }
 
