@@ -47,83 +47,12 @@ function calcRes(n = 0) {
 
 
 // hangman game :
-/*function pendu() {
-  var trys = 0,
-    flag = 0,
-    cpt = 0;
-  var mots = ["pendu", "ciseaux", "pierre", "papier"];
-  var toFind = mots[Math.trunc(Math.random() * mots.length)];
-  var res = "";
-  var used = [];
-
-  for (var i = 0; i < toFind.length; i++) {
-    res += "_";
-  }
-
-  while (trys < 10 && res != toFind) {
-    // no verifications of what's prompted
-    var char = prompt("Saisissez une lettre").toLowerCase();
-
-    // only 1 alphabet character input
-    if (char.length > 1 || !char[0].match(/[a-z]/i)) {
-      console.log("Veuillez ne saisir qu'une lettre !");
-    } else {
-      // checks the previous inputs if unique, pushes it in used
-      if (used.length > 0) {
-        for (var i = 0; i < used.length; i++) {
-          if (char == used[i]) {
-            cpt++;
-          }
-        }
-      }
-      else {
-        cpt = 100;
-      }
-      // compares the prompted char with the whole string
-      if (cpt == 0 || cpt == 100) {
-        res = res.split("");
-        for (var i = 0; i < toFind.length; i++) {
-          if (char == toFind[i]) {
-            // have to split and join res or else can't modify res[i]
-            res[i] = toFind[i];
-            flag = 1;
-          }
-        }
-        res = res.join("");
-        used.push(char);
-      }
-      else  {
-        console.log("Vous avez déjà saisi ce caractère.");
-      }
-      cpt = 0;
-
-    }
-
-    if (flag == 0) {
-      trys++;
-    }
-
-    console.log(res + " il vous reste " + (10 - trys) + " tentatives");
-    console.log("vous avez déjà essayé : " + used);
-    flag = 0;
-  }
-
-  if (res == toFind) {
-    alert("Gagné ! Il vous restait : " + (10 - trys) + " essais");
-  }
-  else {
-    alert("Perdu ! Il fallait trouver : " + toFind);
-  }
-
-}
-*/
 
 var used = [];
 var flag = 0;
 var pendu = ["", "\n=========\n", "\n|\n|\n|\n|\n|\n=========\n", "\n+----+\n|\n|\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|    |\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|   /\n|\n=========\n", "\n+----+\n|    |\n|    O\n|   /|\\\n|   / \\\n|\n=========\n"];
 
-// hangman game :
-function pendu2() {
+function pendu() {
   var trys = 0,
     cpt = 0;
   var mots = ["pendu", "ciseaux", "pierre", "papier"];
@@ -196,7 +125,6 @@ function checkUsed(char, res, toFind) {
   else  {
     console.log("Vous avez déjà saisi ce caractère.");
   }
-
   return res;
 }
 
