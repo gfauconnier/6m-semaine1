@@ -13,21 +13,21 @@ function calcRes(n = 0) {
   // if n is 1 calculates the result of the match, if 0 then resets the scores
   if (n == 1) {
     // checks that both players have less than 2 points
-    if (scoreJ < 2 && scoreO < 2) {
+    if (scoreJ < 3 && scoreO < 3) {
       var ordi = Math.trunc(Math.random() * 3);
       var res = ordi - joueur;
       // compares value of both players choice depending of the result players get points or a draw
       if (res == 1 || res == -2) {
         alert("Bien joué !");
         scoreJ++;
-        if (scoreJ == 2) {
+        if (scoreJ == 3) {
           alert("Vous avez gagné !");
           calcRes();
         }
       } else if (res == 2 || res == -1) {
         alert("booouh");
         scoreO++;
-        if (scoreO == 2) {
+        if (scoreO == 3) {
           alert("Vous avez perdu !");
           calcRes();
         }
@@ -56,7 +56,7 @@ function penduF() {
   var mots = ["pendu", "ciseaux", "pierre", "papier"];
   var toFind = mots[Math.trunc(Math.random() * mots.length)];
   var res = "";
-
+  used = [];
 
   res = fillRes(toFind);
 
@@ -85,7 +85,7 @@ function penduF() {
   }
 
   winOrLose(res, trys, toFind);
-  used = [];
+
 }
 
 
