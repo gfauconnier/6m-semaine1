@@ -18,23 +18,23 @@
 
 <!-- RSP new version -->
   <p class="col-md-6">Score : Vous <span id="resultat"> 0 - 0 </span> PC</p>
-  <input type="button" value="Ciseaux" onclick="displayPlayerChoice(0)" class="btn btn-primary">
-  <input type="button" value="Feuille" onclick="displayPlayerChoice(1)" class="btn btn-primary">
-  <input type="button" value="Pierre" onclick="displayPlayerChoice(2)" class="btn btn-primary">
+  <input type="button" value="Ciseaux" onclick="displayPlayerChoice(0)" class="btn_choice btn btn-primary">
+  <input type="button" value="Feuille" onclick="displayPlayerChoice(1)" class="btn_choice btn btn-primary">
+  <input type="button" value="Pierre" onclick="displayPlayerChoice(2)" class="btn_choice btn btn-primary">
   <div class="container">
     <div class="row">
 
       <div id="playerchoice"><img id="img_p" src="img/qmark.svg"></div>
 
-      <p><span id="aff_res"></span></p>
-
       <div id="imgrotation"><img id="img_r" src=""></div>
       <div id="compchoice" class="d-none"><img id="img_o" src=""></div>
     </div>
   </div>
+  <p class="d-none" id="aff_res"></p>
 
   <input type="button" value="Jouer" onclick="calcRes(1)" id="btn_jouer" class="btn btn-primary d-none">
-
+  <input type="button" value="Continuer" onclick="calcRes(2)" id="btn_continue" class="btn btn-primary d-none">
+  <input type="button" value="Rejouer" onclick="calcRes()" id="btn_rejouer" class="btn btn-primary d-none">
 <!-- RSP new version -->
 
 
@@ -69,6 +69,8 @@
   <script src="js/tether.min.js"></script>
   <script src="js/bootstrap.js"></script>
 <!-- ############## JS sources ############## -->
+
+  <script>window.onload = imgRotation();</script>
 </body>
 
 </html>

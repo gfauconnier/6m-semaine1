@@ -1,6 +1,5 @@
 // rock-scissors-paper game :
 
-
 // variables used to store scores
 var scoreJ = 0;
 var scoreO = 0;
@@ -9,51 +8,44 @@ var playerChoice = 0;
 // this function does everything needed for this game
 function calcRes(n = 0) {
 
-  //var x = document.getElementById("choix").selectedIndex;
-  //var y = document.getElementById("choix").options;
-  // gets the value of the selected <option> (0, 1 or 2)
-  //var joueur = y[x].value;
-
-
   // if n is 1 calculates the result of the match, if 0 then resets the scores
+  altBtn();
   if (n == 1) {
-    // checks that both players have less than 2 points
+    // checks that both players have less than 3 points
     if (scoreJ < 3 && scoreO < 3) {
       var ordi = Math.trunc(Math.random() * 3);
 
       document.getElementById("img_o").src = "img/rsp" + ordi + ".svg";
-      document.getElementById("compchoice").classList.remove("d-none");
-      document.getElementById("imgrotation").classList.add("d-none");
 
       var res = ordi - playerChoice;
       // compares value of both players choice depending of the result players get points or a draw
       if (res == 1 || res == -2) {
-        alert("Bien joué !");
+        document.getElementById("aff_res").innerHTML = "Bien joué !";
         scoreJ++;
         if (scoreJ == 3) {
-          alert("Vous avez gagné !");
-          calcRes();
+          document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
+          altBtn(1);
         }
       } else if (res == 2 || res == -1) {
-        alert("booouh");
+        document.getElementById("aff_res").innerHTML = "Dommage !";
         scoreO++;
         if (scoreO == 3) {
-          alert("Vous avez perdu !");
-          calcRes();
+          document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
+          altBtn(1);
         }
       } else {
-        alert("Match nul !");
+        document.getElementById("aff_res").innerHTML = "Match nul !";
       }
       document.getElementById('resultat').innerHTML = " " + scoreJ + " - " + scoreO + " ";
-      document.getElementById("compchoice").classList.add("d-none");
-      document.getElementById("imgrotation").classList.remove("d-none");
+      altBtn(2);
     }
+  } else if (n == 2) {
+    document.getElementById("img_p").src = "img/qmark.svg";
+    document.getElementById("btn_continue").classList.add("d-none");
   }
   // resets the scores
   else {
-    document.getElementById('resultat').innerHTML = " 0 - 0 ";
-    document.getElementById("btn_jouer").classList.add("d-none");
-    document.getElementById("img_p").src = "img/qmark.svg";
+    altBtn(3);
     scoreJ = 0;
     scoreO = 0;
   }
@@ -76,6 +68,31 @@ function imgRotation() {
 
 }
 
+function altBtn(n = 0) {
+  if (n == 0) {
+    document.getElementById("compchoice").classList.toggle("d-none");
+    document.getElementById("imgrotation").classList.toggle("d-none");
+    document.getElementById("aff_res").classList.toggle("d-none");
+    var btnCh = document.getElementsByClassName("btn_choice");
+    for (var i = 0; i < btnCh.length; i++) {
+      btnCh[i].classList.toggle("d-none");
+    }
+  }
+  else if (n == 1) {
+    document.getElementById("btn_continue").classList.toggle("d-none");
+    document.getElementById("btn_rejouer").classList.toggle("d-none");
+  }
+  else if (n == 2) {
+    document.getElementById("btn_jouer").classList.add("d-none");
+    document.getElementById("btn_continue").classList.toggle("d-none");
+  }
+  else {
+    document.getElementById('resultat').innerHTML = " 0 - 0 ";
+    document.getElementById("img_p").src = "img/qmark.svg";
+    document.getElementById("btn_jouer").classList.add("d-none");
+    document.getElementById("btn_rejouer").classList.toggle("d-none");
+  }
+}
 
 
 // ############################################################################################
