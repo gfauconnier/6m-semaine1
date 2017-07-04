@@ -16,7 +16,7 @@
 
 <body>
 
-<!-- RSP new version -->
+  <!-- RSP new version -->
   <p class="col-md-6">Score : Vous <span id="resultat"> 0 - 0 </span> PC</p>
   <input type="button" value="Ciseaux" onclick="displayPlayerChoice(0)" class="btn_choice btn btn-primary">
   <input type="button" value="Feuille" onclick="displayPlayerChoice(1)" class="btn_choice btn btn-primary">
@@ -24,10 +24,11 @@
   <div class="container">
     <div class="row">
 
-      <div id="playerchoice"><img id="img_p" src="img/qmark.svg"></div>
-
-      <div id="imgrotation"><img id="img_r" src=""></div>
-      <div id="compchoice" class="d-none"><img id="img_o" src=""></div>
+      <div id="playerchoice" class="col-4"><img id="img_p" src="img/qmark.svg"></div>
+      <div id="computerchoice" class="offset-4 col-4">
+        <div id="imgrotation"><img id="img_r" src=""></div>
+        <div id="compchoice" class="d-none"><img id="img_o" src=""></div>
+      </div>
     </div>
   </div>
   <p class="d-none" id="aff_res"></p>
@@ -35,10 +36,10 @@
   <input type="button" value="Jouer" onclick="calcRes(1)" id="btn_jouer" class="btn btn-primary d-none">
   <input type="button" value="Continuer" onclick="calcRes(2)" id="btn_continue" class="btn btn-primary d-none">
   <input type="button" value="Rejouer" onclick="calcRes()" id="btn_rejouer" class="btn btn-primary d-none">
-<!-- RSP new version -->
+  <!-- RSP new version -->
 
 
-<!-- Rock - Scissors - Paper -->
+  <!-- Rock - Scissors - Paper -->
   <!-- <form>
     <p>Pierre - Feuille - Ciseaux</p>
     <label for="choix">Votre choix :</label>
@@ -52,25 +53,27 @@
     <input type="reset" value="Reset" onclick="calcRes(0)" class="btn btn-primary">
     <p class="col-md-6">Score : Vous <span id="resultat"> 0 - 0 </span> PC</p>
   </form> -->
-<!-- Rock - Scissors - Paper -->
+  <!-- Rock - Scissors - Paper -->
 
-<!-- <hr> -->
+  <!-- <hr> -->
 
 
-<!-- <p>Pendu : ouvrez votre console pour jouer.</p> -->
-<!-- Hangman game -->
-<!-- <input type="button" name="button" value="Pendu" onclick="penduF()" class="btn btn-primary"> -->
-<!-- Hangman game -->
+  <!-- <p>Pendu : ouvrez votre console pour jouer.</p> -->
+  <!-- Hangman game -->
+  <!-- <input type="button" name="button" value="Pendu" onclick="penduF()" class="btn btn-primary"> -->
+  <!-- Hangman game -->
 
-<!-- ############## JS sources ############## -->
+  <!-- ############## JS sources ############## -->
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
   <script src="js/jquery-3.2.1.js"></script>
   <script src="js/tether.min.js"></script>
   <script src="js/bootstrap.js"></script>
-<!-- ############## JS sources ############## -->
+  <!-- ############## JS sources ############## -->
 
-  <script>window.onload = imgRotation();</script>
+  <script>
+    window.onload = imgRotation();
+  </script>
 </body>
 
 </html>

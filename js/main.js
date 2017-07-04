@@ -32,10 +32,12 @@ function calcRes(n = 0) {
   } else if (n == 2) {
     document.getElementById("img_p").src = "img/qmark.svg";
     document.getElementById("btn_continue").classList.add("d-none");
+    displayFight();
   }
   // resets the scores
   else {
     altBtn(3);
+    displayFight();
     scoreJ = 0;
     scoreO = 0;
   }
@@ -52,6 +54,8 @@ function calcRes(n = 0) {
 function displayResult(res){
   if (res == 1 || res == -2) {
     document.getElementById("aff_res").innerHTML = "Bien joué !";
+    document.getElementById("playerchoice").style.zIndex = "1";
+    fight(300);
     scoreJ++;
     if (scoreJ == 3) {
       document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
@@ -59,12 +63,15 @@ function displayResult(res){
     }
   } else if (res == 2 || res == -1) {
     document.getElementById("aff_res").innerHTML = "Dommage !";
+    document.getElementById("computerchoice").style.zIndex = "1";
+    fight(300);
     scoreO++;
     if (scoreO == 3) {
       document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
       altBtn(1);
     }
   } else {
+    fight();
     document.getElementById("aff_res").innerHTML = "Match nul !";
   }
   document.getElementById('resultat').innerHTML = " " + scoreJ + " - " + scoreO + " ";
@@ -133,6 +140,38 @@ function altBtn(n = 0) {
   }
 }
 
+
+/**
+ * displayFight - reset position and z-index of fighting divs
+ *
+ * @return {type}  no return only display
+ */
+function displayFight() {
+  document.getElementById("playerchoice").style.left = 0;
+  document.getElementById("computerchoice").style.right = 0;
+  document.getElementById("playerchoice").style.zIndex = 0;
+  document.getElementById("computerchoice").style.zIndex = 0;
+}
+
+
+/**
+ * fight - creates an interval to make 2 divs move towards each other
+ *
+ * @param  {integer} max = 230 how much to move div towards each other
+ * @return {type}           no return only display
+ */
+function fight(max = 230) {
+  var moveDiv = 0;
+  var timer = setInterval(function() {
+    moveDiv += 10;
+    document.getElementById("playerchoice").style.left = moveDiv + "px";
+    document.getElementById("computerchoice").style.right = moveDiv + "px";
+    // clear the timer at 300px to stop the animation
+    if (moveDiv == max) {
+      clearInterval(timer);
+    }
+  }, 16);
+}
 
 // ############################################################################################
 // ############################################################################################

@@ -1,6 +1,19 @@
-div {
-  max-width: 30vw;
+div.container {
+  margin-top: 30px;
 }
+
+div#computerchoice,  div#playerchoice {
+  position: relative;
+}
+
+div#playerchoice img {
+  background-color: lightblue;
+}
+
+div#computerchoice img {
+  background-color: #AA2222;
+}
+
 div img {
-  height: 30vh;
+  height: 40vh;
 }
