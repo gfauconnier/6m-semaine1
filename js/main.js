@@ -5,7 +5,13 @@ var scoreJ = 0;
 var scoreO = 0;
 var playerChoice = 0;
 
-// this function does everything needed for this game
+
+/**
+ * calcRes - main function for rock-scissors-paper structure of all called functions
+ *
+ * @param  {type} n = 0 sent to change what'll the function displays or calculate
+ * @return {type}       no return only display
+ */
 function calcRes(n = 0) {
 
   // if n is 1 calculates the result of the match, if 0 then resets the scores
@@ -13,32 +19,16 @@ function calcRes(n = 0) {
   if (n == 1) {
     // checks that both players have less than 3 points
     if (scoreJ < 3 && scoreO < 3) {
-      var ordi = Math.trunc(Math.random() * 3);
 
+      var ordi = Math.trunc(Math.random() * 3);
       document.getElementById("img_o").src = "img/rsp" + ordi + ".svg";
 
-      var res = ordi - playerChoice;
       // compares value of both players choice depending of the result players get points or a draw
-      if (res == 1 || res == -2) {
-        document.getElementById("aff_res").innerHTML = "Bien joué !";
-        scoreJ++;
-        if (scoreJ == 3) {
-          document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
-          altBtn(1);
-        }
-      } else if (res == 2 || res == -1) {
-        document.getElementById("aff_res").innerHTML = "Dommage !";
-        scoreO++;
-        if (scoreO == 3) {
-          document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
-          altBtn(1);
-        }
-      } else {
-        document.getElementById("aff_res").innerHTML = "Match nul !";
-      }
-      document.getElementById('resultat').innerHTML = " " + scoreJ + " - " + scoreO + " ";
+      var res = ordi - playerChoice;
+      displayResult(res);
       altBtn(2);
     }
+    // displays Continue button and changes player choice back to default img
   } else if (n == 2) {
     document.getElementById("img_p").src = "img/qmark.svg";
     document.getElementById("btn_continue").classList.add("d-none");
@@ -51,12 +41,54 @@ function calcRes(n = 0) {
   }
 }
 
+
+/**
+ * displayResult - this function gets the result of (ordi - playerChoice) from calcRes() and depending
+ *  on what's sent displays the result
+ *
+ * @param  {integer} res result of (computer choice - player choice) sent and used to display result
+ * @return {type}     no return only display
+ */
+function displayResult(res){
+  if (res == 1 || res == -2) {
+    document.getElementById("aff_res").innerHTML = "Bien joué !";
+    scoreJ++;
+    if (scoreJ == 3) {
+      document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
+      altBtn(1);
+    }
+  } else if (res == 2 || res == -1) {
+    document.getElementById("aff_res").innerHTML = "Dommage !";
+    scoreO++;
+    if (scoreO == 3) {
+      document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
+      altBtn(1);
+    }
+  } else {
+    document.getElementById("aff_res").innerHTML = "Match nul !";
+  }
+  document.getElementById('resultat').innerHTML = " " + scoreJ + " - " + scoreO + " ";
+}
+
+
+/**
+ * displayPlayerChoice - this function changes the img src of player choice
+ *
+ * @param  {integer} choice 0, 1 or 2 depending of choice button selected
+ * @return {type}        no return only display
+ */
 function displayPlayerChoice(choice) {
   document.getElementById("img_p").src = "img/rsp" + choice + ".svg";
   document.getElementById("btn_jouer").classList.remove("d-none");
   playerChoice = choice;
 }
 
+
+/**
+ * imgRotation - This functions changes img src of computer placeholder choice every 800ms
+ *
+ * @return {type}  nothing returned only display changes
+ */
 function imgRotation() {
   var tab = [0, 1, 2];
   var n;
@@ -68,6 +100,13 @@ function imgRotation() {
 
 }
 
+
+/**
+ * altBtn - A function to display/hide elements of html depending of what is sent
+ *
+ * @param  {integer} n = 0 an integer sent as param to check what to display (0 by default)
+ * @return {type}       nothing returned
+ */
 function altBtn(n = 0) {
   if (n == 0) {
     document.getElementById("compchoice").classList.toggle("d-none");
