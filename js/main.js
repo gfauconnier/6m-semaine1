@@ -1,21 +1,31 @@
 // rock-scissors-paper game :
 
+
 // variables used to store scores
 var scoreJ = 0;
 var scoreO = 0;
+var playerChoice = 0;
+
 // this function does everything needed for this game
 function calcRes(n = 0) {
-  var x = document.getElementById("choix").selectedIndex;
-  var y = document.getElementById("choix").options;
+
+  //var x = document.getElementById("choix").selectedIndex;
+  //var y = document.getElementById("choix").options;
   // gets the value of the selected <option> (0, 1 or 2)
-  var joueur = y[x].value;
+  //var joueur = y[x].value;
+
 
   // if n is 1 calculates the result of the match, if 0 then resets the scores
   if (n == 1) {
     // checks that both players have less than 2 points
     if (scoreJ < 3 && scoreO < 3) {
       var ordi = Math.trunc(Math.random() * 3);
-      var res = ordi - joueur;
+
+      document.getElementById("img_o").src = "img/rsp" + ordi + ".svg";
+      document.getElementById("compchoice").classList.remove("d-none");
+      document.getElementById("imgrotation").classList.add("d-none");
+
+      var res = ordi - playerChoice;
       // compares value of both players choice depending of the result players get points or a draw
       if (res == 1 || res == -2) {
         alert("Bien joué !");
@@ -35,15 +45,37 @@ function calcRes(n = 0) {
         alert("Match nul !");
       }
       document.getElementById('resultat').innerHTML = " " + scoreJ + " - " + scoreO + " ";
+      document.getElementById("compchoice").classList.add("d-none");
+      document.getElementById("imgrotation").classList.remove("d-none");
     }
   }
   // resets the scores
   else {
     document.getElementById('resultat').innerHTML = " 0 - 0 ";
+    document.getElementById("btn_jouer").classList.add("d-none");
+    document.getElementById("img_p").src = "img/qmark.svg";
     scoreJ = 0;
     scoreO = 0;
   }
 }
+
+function displayPlayerChoice(choice) {
+  document.getElementById("img_p").src = "img/rsp" + choice + ".svg";
+  document.getElementById("btn_jouer").classList.remove("d-none");
+  playerChoice = choice;
+}
+
+function imgRotation() {
+  var tab = [0, 1, 2];
+  var n;
+  setInterval(function() {
+    n = tab.shift();
+    tab.push(n);
+    document.getElementById("img_r").src = "img/rsp" + tab[0] + ".svg";
+  }, 800);
+
+}
+
 
 
 // ############################################################################################
@@ -71,7 +103,7 @@ function penduF() {
 
 
     // only 1 alphabet character input
-    if (char.length == 0 ||char.length > 1 || !char[0].match(/[a-z]/i)) {
+    if (char.length == 0 || char.length > 1 || !char[0].match(/[a-z]/i)) {
       console.log("Veuillez ne saisir qu'une lettre !");
     } else {
       // checks the previous inputs if unique, pushes it in used
@@ -99,7 +131,7 @@ function penduF() {
  * @param  {string} strToFind the word to find
  * @return {string} res    return a string filled with str.length "_"
  */
-function fillRes(strToFind){
+function fillRes(strToFind) {
   var res = "";
   for (var i = 0; i < strToFind.length; i++) {
     res += "_";
@@ -117,15 +149,13 @@ function checkUsed(char, res, toFind) {
         cpt++;
       }
     }
-  }
-  else {
+  } else {
     cpt = 100;
   }
   // compares the prompted char with the whole string
   if (cpt == 0 || cpt == 100) {
     res = compare(res, char, toFind);
-  }
-  else  {
+  } else {
     console.log("Vous avez déjà saisi ce caractère.");
   }
 
@@ -149,8 +179,7 @@ function compare(res, char, toFind) {
 function winOrLose(res, trys, toFind) {
   if (res == toFind) {
     alert("Gagné ! Il vous restait : " + (10 - trys) + " essais");
-  }
-  else {
+  } else {
     alert("Perdu ! Il fallait trouver : " + toFind);
   }
 }
