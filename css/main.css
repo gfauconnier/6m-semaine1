@@ -1,3 +1,16 @@
+@font-face {
+  font-family: ozone;
+  src: url(Ozone.ttf);
+}
+
+p.score {
+  text-align: center;
+  font-family: ozone;
+  font-size: 3rem;
+  background-color: #292B2C;
+  color: white;
+}
+
 div.fightarena {
   display: flex;
   flex-direction: column;
