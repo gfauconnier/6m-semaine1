@@ -4,8 +4,8 @@
 var scoreJ = 0;
 var scoreO = 0;
 var playerChoice = 0;
-var playerName = prompt("Saisissez votre nom : ");
-
+var playerName = prompt("Saisissez votre nom : ").toUpperCase();
+var compName = "";
 
 /**
  * playerN - just prompts the user to input his/her name and displays it
@@ -13,10 +13,16 @@ var playerName = prompt("Saisissez votre nom : ");
  * @return {type}  no return only display
  */
 function playerN() {
-  if (!playerName) {
-    playerName = "Joueur";
+  if (window.innerWidth >= 768) {
+    compName = "ORDI"
+    if (!playerName) {
+      playerName = "JOUEUR";
+    }
+  } else {
+    playerName = "J";
+    compName = "PC";
   }
-  document.getElementById("resultat").innerHTML = playerName + " " + scoreJ + " - " + scoreO + " ";
+  affScore();
 }
 
 
@@ -88,7 +94,7 @@ function displayResult(res) {
     window.innerWidth > 768 ? fight() : fight(16);
     document.getElementById("aff_res").innerHTML = "Match nul !";
   }
-  document.getElementById("resultat").innerHTML = playerName + " " + scoreJ + " - " + scoreO + " ";
+  affScore();
 }
 
 
@@ -187,8 +193,7 @@ function fight(max = 30) {
     if (window.innerWidth > 768) {
       document.getElementById("img_p").style.left = moveDiv + "vw";
       document.getElementById("img_o").style.right = moveDiv + "vw";
-    }
-    else {
+    } else {
       document.getElementById("img_p").style.top = moveDiv + "vh";
       document.getElementById("img_o").style.bottom = moveDiv + "vh";
     }
@@ -198,6 +203,12 @@ function fight(max = 30) {
     }
   }, 16);
 }
+
+
+function affScore() {
+  document.getElementById("resultat").innerHTML = playerName + " " + scoreJ + " - " + scoreO + " " + compName;
+}
+
 
 // ############################################################################################
 // ############################################################################################

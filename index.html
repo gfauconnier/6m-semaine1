@@ -17,22 +17,30 @@
 <body>
 
   <!-- RSP new version -->
-  <p class="score">Score : <span id="resultat">Vous  0 - 0 </span> PC</p>
-  <input type="button" value="Ciseaux" onclick="displayPlayerChoice(0)" class="btn_choice btn btn-primary">
-  <input type="button" value="Feuille" onclick="displayPlayerChoice(1)" class="btn_choice btn btn-primary">
-  <input type="button" value="Pierre" onclick="displayPlayerChoice(2)" class="btn_choice btn btn-primary">
-  <div class="fightarena">
+  <p class="score"><span id="resultat">J1  0 - 0 PC</span></p>
+  <div class="rsp">
 
+    <div class="playerbtn">
+      <input type="button" value="Ciseaux" onclick="displayPlayerChoice(0)" class="btn_choice btn btn-primary">
+      <input type="button" value="Feuille" onclick="displayPlayerChoice(1)" class="btn_choice btn btn-primary">
+      <input type="button" value="Pierre" onclick="displayPlayerChoice(2)" class="btn_choice btn btn-primary">
+    </div>
+
+    <div class="fightarena">
       <img id="img_p" src="img/qmark.svg">
       <img id="img_r" src="">
       <img id="img_o" class="d-none" src="">
+    </div>
+
+    <p class="d-none" id="aff_res"></p>
+
+    <div class="replaybtn">
+      <input type="button" value="Jouer" onclick="calcRes(1)" id="btn_jouer" class="btn btn-primary d-none">
+      <input type="button" value="Continuer" onclick="calcRes(2)" id="btn_continue" class="btn btn-primary d-none">
+      <input type="button" value="Rejouer" onclick="calcRes()" id="btn_rejouer" class="btn btn-primary d-none">
+    </div>
 
   </div>
-  <p class="d-none" id="aff_res"></p>
-
-  <input type="button" value="Jouer" onclick="calcRes(1)" id="btn_jouer" class="btn btn-primary d-none">
-  <input type="button" value="Continuer" onclick="calcRes(2)" id="btn_continue" class="btn btn-primary d-none">
-  <input type="button" value="Rejouer" onclick="calcRes()" id="btn_rejouer" class="btn btn-primary d-none">
   <!-- RSP new version -->
 
 

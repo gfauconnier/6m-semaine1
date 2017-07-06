@@ -11,14 +11,26 @@ p.score {
   color: white;
 }
 
+
+/*div.rsp {
+  display: flex;
+  flex-flow: column wrap;
+}*/
+
 div.fightarena {
+  order: -1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 80vh;
+  /*width: 60vw;*/
   margin: 20px 0;
 }
+
+/*div.playerbtn, div.replaybtn {
+  width: 38vw;
+}*/
 
 img {
   height: 24vh;
@@ -42,6 +54,7 @@ img#img_o, img#img_r {
   div.fightarena {
     flex-direction: row;
     height: 60vh;
+    order: 0;
   }
 
   div img {
