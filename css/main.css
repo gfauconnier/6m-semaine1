@@ -6,33 +6,24 @@ div.fightarena {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
   height: 80vh;
   margin-top: 20px;
 }
 
-div#computerchoice img,  div#playerchoice img{
+img {
+  height: 26vh;
   position: relative;
 }
 
-div#playerchoice img {
+img#img_p {
+  top: 10vh;
   background-color: lightblue;
 }
 
-div#computerchoice img {
-  background-color: #AA2222;
-}
-
-div img {
-  width: 20vw;
-}
-
-img#img_p {
-  top: 10vw;
-}
-
 img#img_o, img#img_r {
-  bottom: 10vw;
+  bottom: 10vh;
+  background-color: #AA2222;
 }
 
 /* ################################################################################ */
@@ -41,17 +32,21 @@ img#img_o, img#img_r {
 
   div.fightarena {
     flex-direction: row;
+    height: 60vh;
   }
 
   div img {
     width: 20vw;
+    height: auto;
   }
 
   img#img_p {
     left: 10vw;
+    top:0;
   }
 
   img#img_o, img#img_r {
     right: 10vw;
+    bottom: 0;
   }
 }
