@@ -2,7 +2,16 @@ div.container {
   margin-top: 30px;
 }
 
-div#computerchoice,  div#playerchoice {
+div.fightarena {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  height: 80vh;
+  margin-top: 20px;
+}
+
+div#computerchoice img,  div#playerchoice img{
   position: relative;
 }
 
@@ -15,5 +24,34 @@ div#computerchoice img {
 }
 
 div img {
-  height: 40vh;
+  width: 20vw;
+}
+
+img#img_p {
+  top: 10vw;
+}
+
+img#img_o, img#img_r {
+  bottom: 10vw;
+}
+
+/* ################################################################################ */
+
+@media (min-width: 768px) {
+
+  div.fightarena {
+    flex-direction: row;
+  }
+
+  div img {
+    width: 20vw;
+  }
+
+  img#img_p {
+    left: 10vw;
+  }
+
+  img#img_o, img#img_r {
+    right: 10vw;
+  }
 }

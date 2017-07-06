@@ -55,7 +55,7 @@ function displayResult(res){
   if (res == 1 || res == -2) {
     document.getElementById("aff_res").innerHTML = "Bien joué !";
     document.getElementById("playerchoice").style.zIndex = "1";
-    fight(300);
+    fight(40);
     scoreJ++;
     if (scoreJ == 3) {
       document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
@@ -64,7 +64,7 @@ function displayResult(res){
   } else if (res == 2 || res == -1) {
     document.getElementById("aff_res").innerHTML = "Dommage !";
     document.getElementById("computerchoice").style.zIndex = "1";
-    fight(300);
+    fight(40);
     scoreO++;
     if (scoreO == 3) {
       document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
@@ -147,8 +147,8 @@ function altBtn(n = 0) {
  * @return {type}  no return only display
  */
 function displayFight() {
-  document.getElementById("playerchoice").style.left = 0;
-  document.getElementById("computerchoice").style.right = 0;
+  document.getElementById("img_p").style.left = "10vw";
+  document.getElementById("img_o").style.right = "10vw";
   document.getElementById("playerchoice").style.zIndex = 0;
   document.getElementById("computerchoice").style.zIndex = 0;
 }
@@ -160,12 +160,12 @@ function displayFight() {
  * @param  {integer} max = 230 how much to move div towards each other
  * @return {type}           no return only display
  */
-function fight(max = 230) {
+function fight(max = 30) {
   var moveDiv = 0;
   var timer = setInterval(function() {
-    moveDiv += 10;
-    document.getElementById("playerchoice").style.left = moveDiv + "px";
-    document.getElementById("computerchoice").style.right = moveDiv + "px";
+    moveDiv += 2;
+    document.getElementById("img_p").style.left = moveDiv + "vw";
+    document.getElementById("img_o").style.right = moveDiv + "vw";
     // clear the timer at 300px to stop the animation
     if (moveDiv == max) {
       clearInterval(timer);
