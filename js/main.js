@@ -205,6 +205,11 @@ function fight(max = 30) {
 }
 
 
+/**
+ * affScore - Displays the score
+ *
+ * @return {type}  no return only display
+ */
 function affScore() {
   document.getElementById("resultat").innerHTML = playerName + " " + scoreJ + " - " + scoreO + " " + compName;
 }

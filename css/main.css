@@ -11,11 +11,15 @@ p.score {
   color: white;
 }
 
+p.affvsres {
+  width: 100vw;
+}
 
-/*div.rsp {
+div.rsp {
   display: flex;
   flex-flow: column wrap;
-}*/
+  height: 80vh;
+}
 
 div.fightarena {
   order: -1;
@@ -23,14 +27,17 @@ div.fightarena {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 80vh;
-  /*width: 60vw;*/
-  margin: 20px 0;
+  height: 100%;
+  width: 60vw;
 }
 
-/*div.playerbtn, div.replaybtn {
+div.playerbtn, div.replaybtn {
   width: 38vw;
-}*/
+}
+
+.playerbtn .btn, .replaybtn .btn {
+  margin: 5px 0;
+}
 
 img {
   height: 24vh;
@@ -51,10 +58,33 @@ img#img_o, img#img_r {
 
 @media (min-width: 768px) {
 
+  div.rsp {
+    flex-flow: column nowrap;
+  }
+
+  div.fightarena, div.playerbtn, div.replaybtn {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  div.playerbtn {
+    width: 40vw;
+    height: 8vh;
+  }
+
   div.fightarena {
-    flex-direction: row;
+    width: 100vw;
     height: 60vh;
     order: 0;
+  }
+
+  div.playerbtn, div.replaybtn {
+    justify-content: space-around;
+  }
+
+  div.replaybtn {
+    width: 100vw;
+    height: 8vh;
   }
 
   div img {
