@@ -6,6 +6,12 @@ var scoreO = 0;
 var playerChoice = 0;
 var playerName = prompt("Saisissez votre nom : ");
 
+
+/**
+ * playerN - just prompts the user to input his/her name and displays it
+ *
+ * @return {type}  no return only display
+ */
 function playerN() {
   if (!playerName) {
     playerName = "Joueur";
@@ -63,7 +69,7 @@ function displayResult(res) {
   if (res == 1 || res == -2) {
     document.getElementById("aff_res").innerHTML = "Bien joué !";
     document.getElementById("img_p").style.zIndex = "1";
-    window.outerWidth > 768 ? fight(40) : fight(20);
+    window.innerWidth > 768 ? fight(40) : fight(28);
     scoreJ++;
     if (scoreJ == 3) {
       document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
@@ -72,14 +78,14 @@ function displayResult(res) {
   } else if (res == 2 || res == -1) {
     document.getElementById("aff_res").innerHTML = "Dommage !";
     document.getElementById("img_o").style.zIndex = "1";
-    window.outerWidth > 768 ? fight(40) : fight(20);
+    window.innerWidth > 768 ? fight(40) : fight(28);
     scoreO++;
     if (scoreO == 3) {
       document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
       altBtn(1);
     }
   } else {
-    window.outerWidth > 768 ? fight() : fight(10);
+    window.innerWidth > 768 ? fight() : fight(16);
     document.getElementById("aff_res").innerHTML = "Match nul !";
   }
   document.getElementById("resultat").innerHTML = playerName + " " + scoreJ + " - " + scoreO + " ";
@@ -154,7 +160,7 @@ function altBtn(n = 0) {
 function displayFight() {
   document.getElementById("img_p").style.zIndex = 0;
   document.getElementById("img_o").style.zIndex = 0;
-  if (window.outerWidth > 768) {
+  if (window.innerWidth >= 768) {
     document.getElementById("img_p").style.left = "10vw";
     document.getElementById("img_p").style.top = 0;
     document.getElementById("img_o").style.right = "10vw";
@@ -171,14 +177,14 @@ function displayFight() {
 /**
  * fight - creates an interval to make 2 divs move towards each other
  *
- * @param  {integer} max = 230 how much to move div towards each other
+ * @param  {integer} max = 30 how much to move div towards each other (30 by default)
  * @return {type}           no return only display
  */
 function fight(max = 30) {
   var moveDiv = 0;
   var timer = setInterval(function() {
     moveDiv += 2;
-    if (window.outerWidth > 768) {
+    if (window.innerWidth > 768) {
       document.getElementById("img_p").style.left = moveDiv + "vw";
       document.getElementById("img_o").style.right = moveDiv + "vw";
     }
@@ -186,7 +192,7 @@ function fight(max = 30) {
       document.getElementById("img_p").style.top = moveDiv + "vh";
       document.getElementById("img_o").style.bottom = moveDiv + "vh";
     }
-    // clear the timer at 300px to stop the animation
+    // clear the timer at max to stop the animation
     if (moveDiv == max) {
       clearInterval(timer);
     }
