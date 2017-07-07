@@ -60,6 +60,7 @@ function calcRes(n = 0) {
     displayFight();
     scoreJ = 0;
     scoreO = 0;
+    affScore();
   }
 }
 
@@ -73,28 +74,28 @@ function calcRes(n = 0) {
  */
 function displayResult(res) {
   if (res == 1 || res == -2) {
-    document.getElementById("aff_res").innerHTML = "Bien joué !";
+    document.getElementById("resultat").innerHTML = "Bien joué !";
     document.getElementById("img_p").style.zIndex = "1";
     window.innerWidth > 768 ? fight(40) : fight(28);
     scoreJ++;
     if (scoreJ == 3) {
-      document.getElementById("aff_res").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
+      document.getElementById("resultat").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
       altBtn(1);
     }
   } else if (res == 2 || res == -1) {
-    document.getElementById("aff_res").innerHTML = "Dommage !";
+    document.getElementById("resultat").innerHTML = "Dommage !";
     document.getElementById("img_o").style.zIndex = "1";
     window.innerWidth > 768 ? fight(40) : fight(28);
     scoreO++;
     if (scoreO == 3) {
-      document.getElementById("aff_res").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
+      document.getElementById("resultat").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
       altBtn(1);
     }
   } else {
     window.innerWidth > 768 ? fight() : fight(16);
-    document.getElementById("aff_res").innerHTML = "Match nul !";
+    document.getElementById("resultat").innerHTML = "Match nul !";
   }
-  affScore();
+  // affScore();
 }
 
 
@@ -138,7 +139,7 @@ function altBtn(n = 0) {
   if (n == 0) {
     document.getElementById("img_o").classList.toggle("d-none");
     document.getElementById("img_r").classList.toggle("d-none");
-    document.getElementById("aff_res").classList.toggle("d-none");
+    // document.getElementById("aff_res").classList.toggle("d-none");
     var btnCh = document.getElementsByClassName("btn_choice");
     for (var i = 0; i < btnCh.length; i++) {
       btnCh[i].classList.toggle("d-none");
@@ -177,6 +178,7 @@ function displayFight() {
     document.getElementById("img_o").style.right = 0;
     document.getElementById("img_o").style.bottom = "10vh";
   }
+  affScore();
 }
 
 
