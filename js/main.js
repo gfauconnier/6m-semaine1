@@ -80,6 +80,7 @@ function displayResult(res) {
     scoreJ++;
     if (scoreJ == 3) {
       document.getElementById("resultat").innerHTML = "Vous avez gagné ! (" + scoreJ + " - " + scoreO + ")";
+      document.getElementById("soundwin").play();
       altBtn(1);
     }
   } else if (res == 2 || res == -1) {
@@ -89,6 +90,7 @@ function displayResult(res) {
     scoreO++;
     if (scoreO == 3) {
       document.getElementById("resultat").innerHTML = "Vous avez perdu ! (" + scoreJ + " - " + scoreO + ")";
+      document.getElementById("soundlose").play();
       altBtn(1);
     }
   } else {

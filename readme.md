@@ -1,11 +1,11 @@
 # Semaine 1 : Rock-Scissors-Paper and Hangman
 
 ## Presentation :  
-We had to make a Rock-Scissors-Paper and a hangman (in console) game.
+We had to make a Rock-Scissors-Paper with DOM and js animations.
 
 ## What's inside ?  
-_index.html_ : basic stuff, a form to display the select for rsp, buttons to launch the games  
-_main.js_ : all the functions for the 2 games js dec inside
+__index.html__ : a _p_ to display the scores, 3 images to display user and computer choices, buttons to play  
+__main.js__ : all the functions for the Rock-Scissors-Paper game  
 
 ## How ?  
-basic Js + DOM 
+basic Js + DOM
